@@ -39,13 +39,12 @@ h3,
 }
 
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero {
     position: relative;
     min-height: 92vh;
     overflow: hidden;
-
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -59,12 +58,8 @@ h3,
         );
 }
 
-
-/* MOON */
-
 .sky-moon {
     position: absolute;
-
     top: 9%;
     left: 50%;
 
@@ -88,12 +83,8 @@ h3,
         0 0 140px 50px rgba(182, 146, 75, 0.08);
 }
 
-
-/* FOG */
-
 .fog-layer {
     position: absolute;
-
     bottom: 0;
     left: 0;
 
@@ -103,15 +94,12 @@ h3,
     background:
         linear-gradient(
             to top,
-            rgba(28,18,32,0.95),
-            rgba(28,18,32,0)
+            rgba(28, 18, 32, 0.95),
+            rgba(28, 18, 32, 0)
         );
 
     pointer-events: none;
 }
-
-
-/* BATS */
 
 .bat {
     position: absolute;
@@ -120,7 +108,8 @@ h3,
 
     opacity: 0.55;
 
-    animation: drift 26s linear infinite;
+    animation:
+        drift 26s linear infinite;
 }
 
 .bat-one {
@@ -160,26 +149,17 @@ h3,
 
 }
 
-
-/* CASTLE */
-
 .castle {
     position: relative;
-
     width: 100%;
-
     z-index: 2;
 }
 
 .castle svg {
     display: block;
-
     width: 100%;
     height: auto;
 }
-
-
-/* HERO TEXT */
 
 .hero-copy {
     position: absolute;
@@ -198,7 +178,6 @@ h3,
 }
 
 .hero-eyebrow {
-
     color: var(--gold);
 
     font-size: 0.8rem;
@@ -211,28 +190,28 @@ h3,
 }
 
 .hero-copy h1 {
-
     font-family: 'Nosifer', serif;
 
-    font-size: clamp(
-        1.9rem,
-        5vw,
-        3.1rem
-    );
+    font-size:
+        clamp(
+            1.9rem,
+            5vw,
+            3.1rem
+        );
 
     line-height: 1.25;
 
-    margin: 0 0 22px 0;
+    margin:
+        0 0 22px 0;
 
     color: var(--parchment);
 
     text-shadow:
-        0 0 18px rgba(156,16,48,0.55),
-        0 2px 24px rgba(0,0,0,0.7);
+        0 0 18px rgba(156, 16, 48, 0.55),
+        0 2px 24px rgba(0, 0, 0, 0.7);
 }
 
 .hero-copy p {
-
     color: var(--parchment-dim);
 
     font-size: 1.15rem;
@@ -245,20 +224,19 @@ h3,
         0 auto 30px auto;
 }
 
-
-/* BEGIN BUTTON */
-
 .begin-btn {
-
     font-family: 'Pirata One', serif;
 
     background: transparent;
 
-    border: 1px solid var(--gold);
+    border:
+        1px solid
+        var(--gold);
 
     color: var(--gold);
 
-    padding: 14px 34px;
+    padding:
+        14px 34px;
 
     font-size: 0.95rem;
 
@@ -272,17 +250,14 @@ h3,
 }
 
 .begin-btn:hover {
-
     background: var(--gold);
-
     color: var(--ink);
 }
 
 
-/* ================= MAIN ================= */
+/* MAIN */
 
 main {
-
     max-width: 700px;
 
     margin: 0 auto;
@@ -291,11 +266,7 @@ main {
         70px 24px 120px 24px;
 }
 
-
-/* STAGES */
-
 .stage {
-
     display: none;
 
     animation:
@@ -320,11 +291,7 @@ main {
 
 }
 
-
-/* STAGE HEADER */
-
 .stage-marker {
-
     display: flex;
 
     align-items: center;
@@ -335,16 +302,15 @@ main {
 }
 
 .stage-marker .num {
-
-    font-family:
-        'Pirata One', serif;
+    font-family: 'Pirata One', serif;
 
     font-size: 1.4rem;
 
     color: var(--gold);
 
     border:
-        1px solid var(--gold);
+        1px solid
+        var(--gold);
 
     border-radius: 50%;
 
@@ -354,14 +320,12 @@ main {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     flex-shrink: 0;
 }
 
 .stage-title {
-
     font-size: 1.5rem;
 
     color: var(--parchment);
@@ -370,9 +334,7 @@ main {
 }
 
 .stage-sub {
-
-    color:
-        var(--parchment-dim);
+    color: var(--parchment-dim);
 
     font-style: italic;
 
@@ -383,10 +345,9 @@ main {
 }
 
 
-/* ================= LEDGER ================= */
+/* LEDGER */
 
 .ledger {
-
     background:
         linear-gradient(
             180deg,
@@ -402,17 +363,13 @@ main {
         34px 34px 30px 34px;
 
     box-shadow:
-        0 18px 50px
-        rgba(0,0,0,0.45),
-
-        inset 0 0 0 1px
-        rgba(92,10,30,0.15);
+        0 18px 50px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(92, 10, 30, 0.15);
 
     position: relative;
 }
 
 .ledger::before {
-
     content: "";
 
     position: absolute;
@@ -421,13 +378,10 @@ main {
 
     border:
         1px solid
-        rgba(92,10,30,0.25);
+        rgba(92, 10, 30, 0.25);
 
     pointer-events: none;
 }
-
-
-/* QUESTIONS */
 
 .question {
     margin-bottom: 26px;
@@ -438,7 +392,6 @@ main {
 }
 
 .question p {
-
     font-weight: 600;
 
     margin:
@@ -447,11 +400,7 @@ main {
     font-size: 1.08rem;
 }
 
-
-/* OPTIONS */
-
 .options {
-
     display: flex;
 
     flex-direction: column;
@@ -460,7 +409,6 @@ main {
 }
 
 .option {
-
     display: flex;
 
     align-items: center;
@@ -472,7 +420,7 @@ main {
 
     border:
         1px solid
-        rgba(92,10,30,0.3);
+        rgba(92, 10, 30, 0.3);
 
     cursor: pointer;
 
@@ -484,31 +432,24 @@ main {
 }
 
 .option:hover {
-
     background:
-        rgba(92,10,30,0.08);
+        rgba(92, 10, 30, 0.08);
 }
 
 .option.selected {
-
     background:
-        rgba(92,10,30,0.14);
+        rgba(92, 10, 30, 0.14);
 
     border-color:
         var(--wine-bright);
 }
 
 .option input {
-
     accent-color:
         var(--wine-bright);
 }
 
-
-/* BUTTON ROW */
-
 .action-row {
-
     margin-top: 36px;
 
     display: flex;
@@ -517,9 +458,7 @@ main {
 }
 
 .proceed-btn {
-
-    font-family:
-        'Pirata One', serif;
+    font-family: 'Pirata One', serif;
 
     background:
         var(--wine-bright);
@@ -532,11 +471,9 @@ main {
     padding:
         13px 30px;
 
-    font-size:
-        0.9rem;
+    font-size: 0.9rem;
 
-    letter-spacing:
-        0.06em;
+    letter-spacing: 0.06em;
 
     cursor: pointer;
 
@@ -545,35 +482,31 @@ main {
 }
 
 .proceed-btn:disabled {
-
     opacity: 0.35;
 
     cursor: not-allowed;
 }
 
 .proceed-btn:not(:disabled):hover {
-
     background:
         #b31336;
 }
 
 
-/* ================= CAMERA ================= */
+/* CAMERA */
 
 .cam-frame {
-
     background:
         var(--fog-2);
 
     border:
         1px solid
-        rgba(182,146,75,0.35);
+        rgba(182, 146, 75, 0.35);
 
     padding: 20px;
 }
 
 .cam-viewport {
-
     position: relative;
 
     width: 100%;
@@ -586,12 +519,11 @@ main {
 
     border:
         1px solid
-        rgba(182,146,75,0.2);
+        rgba(182, 146, 75, 0.2);
 }
 
 .cam-viewport video,
 .cam-viewport canvas {
-
     position: absolute;
 
     top: 0;
@@ -608,52 +540,103 @@ main {
 }
 
 
-/* RETICLE */
+/* =========================================================
+   MOUTH POSITION GUIDE
+========================================================= */
 
-.reticle {
-
+.mouth-guide {
     position: absolute;
 
-    display: none;
+    left: 50%;
+    top: 67%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 46%;
+    height: 17%;
+
+    border:
+        2px solid
+        rgba(182, 146, 75, 0.9);
+
+    border-radius: 50%;
 
     pointer-events: none;
 
-    border:
-        1px solid
-        rgba(156,16,48,0.8);
+    z-index: 5;
+
+    box-shadow:
+        0 0 20px
+        rgba(182, 146, 75, 0.15),
+
+        inset 0 0 15px
+        rgba(182, 146, 75, 0.05);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.reticle .tag {
-
+.mouth-guide-label {
     position: absolute;
 
-    top: -26px;
-    left: 0;
+    top: -29px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    white-space: nowrap;
 
     font-family:
-        'Pirata One', serif;
+        'Pirata One',
+        serif;
 
     font-size: 0.72rem;
 
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
 
     color:
-        #ff5a72;
+        var(--gold);
 
     background:
-        rgba(0,0,0,0.55);
+        rgba(0, 0, 0, 0.65);
 
     padding:
-        2px 6px;
+        3px 8px;
+}
 
-    white-space: nowrap;
+.mouth-guide.accepted {
+    border-color:
+        #78b23c;
+
+    box-shadow:
+        0 0 25px
+        rgba(120, 178, 60, 0.35);
+}
+
+.mouth-guide.warning {
+    border-color:
+        var(--wine-bright);
+
+    box-shadow:
+        0 0 25px
+        rgba(156, 16, 48, 0.3);
+}
+
+
+/* RETICLE IS KEPT HIDDEN */
+
+.reticle {
+    display: none;
 }
 
 
 /* CLOUD */
 
 .cloud {
-
     position: absolute;
 
     display: none;
@@ -665,8 +648,8 @@ main {
     background:
         radial-gradient(
             circle,
-            rgba(120,178,60,0.55),
-            rgba(120,178,60,0.15) 60%,
+            rgba(120, 178, 60, 0.55),
+            rgba(120, 178, 60, 0.15) 60%,
             transparent 75%
         );
 
@@ -677,7 +660,6 @@ main {
 /* CAMERA BUTTONS */
 
 .cam-controls {
-
     display: flex;
 
     gap: 10px;
@@ -688,9 +670,9 @@ main {
 }
 
 .cam-btn {
-
     font-family:
-        'Pirata One', serif;
+        'Pirata One',
+        serif;
 
     background: transparent;
 
@@ -704,11 +686,9 @@ main {
     padding:
         10px 20px;
 
-    font-size:
-        0.82rem;
+    font-size: 0.82rem;
 
-    letter-spacing:
-        0.05em;
+    letter-spacing: 0.05em;
 
     cursor: pointer;
 
@@ -718,7 +698,6 @@ main {
 }
 
 .cam-btn:hover {
-
     background:
         var(--gold);
 
@@ -727,7 +706,6 @@ main {
 }
 
 .cam-btn:disabled {
-
     opacity: 0.3;
 
     cursor: not-allowed;
@@ -737,12 +715,10 @@ main {
 /* CAMERA STATUS */
 
 .cam-status {
-
     color:
         var(--parchment-dim);
 
-    font-size:
-        0.92rem;
+    font-size: 0.92rem;
 
     margin-top: 12px;
 
@@ -755,7 +731,6 @@ main {
 /* READING */
 
 .reading {
-
     margin-top: 16px;
 
     padding:
@@ -766,7 +741,7 @@ main {
         var(--wine-bright);
 
     background:
-        rgba(92,10,30,0.12);
+        rgba(92, 10, 30, 0.12);
 
     display: none;
 }
@@ -776,41 +751,32 @@ main {
 }
 
 .reading .rlabel {
-
     font-family:
-        'Pirata One', serif;
+        'Pirata One',
+        serif;
 
-    font-size:
-        0.75rem;
+    font-size: 0.75rem;
 
-    letter-spacing:
-        0.06em;
+    letter-spacing: 0.06em;
 
     color:
         var(--gold);
 }
 
 .reading .rvalue {
-
-    font-size:
-        1.1rem;
+    font-size: 1.1rem;
 
     margin-top: 4px;
 }
 
 
-/* ================= VERDICT ================= */
+/* VERDICT */
 
 .verdict-wrap {
-
     text-align: center;
 }
 
-
-/* SEAL */
-
 .seal {
-
     width: 96px;
     height: 96px;
 
@@ -829,11 +795,11 @@ main {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-family:
-        'Pirata One', serif;
+        'Pirata One',
+        serif;
 
     font-size: 1.6rem;
 
@@ -842,11 +808,10 @@ main {
 
     box-shadow:
         0 10px 30px
-        rgba(92,10,30,0.5);
+        rgba(92, 10, 30, 0.5);
 }
 
 .verdict-title {
-
     font-size: 2rem;
 
     margin:
@@ -854,7 +819,6 @@ main {
 }
 
 .verdict-desc {
-
     color:
         var(--parchment-dim);
 
@@ -866,11 +830,7 @@ main {
         0 auto 30px auto;
 }
 
-
-/* BREAKDOWN */
-
 .breakdown {
-
     text-align: left;
 
     max-width: 420px;
@@ -880,34 +840,30 @@ main {
 
     border-top:
         1px solid
-        rgba(182,146,75,0.3);
+        rgba(182, 146, 75, 0.3);
 
     padding-top: 18px;
 }
 
 .breakdown div {
-
     display: flex;
 
     justify-content: space-between;
 
-    padding: 7px 0;
+    padding:
+        7px 0;
 
     border-bottom:
         1px dashed
-        rgba(182,146,75,0.2);
+        rgba(182, 146, 75, 0.2);
 
-    font-size:
-        0.96rem;
+    font-size: 0.96rem;
 }
 
-
-/* RESTART */
-
 .restart-btn {
-
     font-family:
-        'Pirata One', serif;
+        'Pirata One',
+        serif;
 
     background: transparent;
 
@@ -921,17 +877,14 @@ main {
     padding:
         11px 26px;
 
-    font-size:
-        0.82rem;
+    font-size: 0.82rem;
 
-    letter-spacing:
-        0.05em;
+    letter-spacing: 0.05em;
 
     cursor: pointer;
 }
 
 .restart-btn:hover {
-
     border-color:
         var(--gold);
 
@@ -939,24 +892,19 @@ main {
         var(--gold);
 }
 
-
-/* DISCLAIMER */
-
 .disclaimer {
-
     margin-top: 60px;
 
     padding-top: 24px;
 
     border-top:
         1px solid
-        rgba(182,146,75,0.15);
+        rgba(182, 146, 75, 0.15);
 
     color:
         var(--parchment-dim);
 
-    font-size:
-        0.85rem;
+    font-size: 0.85rem;
 
     text-align: center;
 
@@ -964,30 +912,29 @@ main {
 }
 
 
-/* MOBILE */
-
 @media (max-width: 480px) {
 
     main {
-
         padding:
             50px 16px 100px 16px;
     }
 
     .ledger {
-
         padding:
             24px 20px;
     }
 
     .stage-sub {
-
         margin-left: 0;
     }
 
     .stage-marker {
-
         flex-wrap: wrap;
+    }
+
+    .mouth-guide {
+        width: 58%;
+        height: 18%;
     }
 
 }
