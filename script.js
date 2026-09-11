@@ -1,148 +1,173 @@
 (function () {
 
-    /* =========================
-       STAGE CONTROL
-    ========================= */
 
-    const heroSection =
-        document.querySelector(".hero");
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
 
-    const stages = [
-        document.getElementById("stage1"),
-        document.getElementById("stage2"),
-        document.getElementById("stage3"),
-        document.getElementById("stage4")
-    ];
+    let quizScore = 0;
+
+    window.canineLong = false;
+    window.canineMm = 0;
+
+    window.breathLow = false;
+
+
+    /* =========================================================
+       STAGES
+    ========================================================= */
+
+    const hero =
+        document.querySelector('.hero');
+
+    const stage1 =
+        document.getElementById('stage1');
+
+    const stage2 =
+        document.getElementById('stage2');
+
+    const stage3 =
+        document.getElementById('stage3');
+
+    const stage4 =
+        document.getElementById('stage4');
+
+
+    /* =========================================================
+       BEGIN
+    ========================================================= */
 
     const beginBtn =
-        document.getElementById("beginBtn");
-
-
-    function showStage(number) {
-
-        stages.forEach((stage, index) => {
-
-            stage.classList.toggle(
-                "active",
-                index === number - 1
-            );
-
-        });
-
-        window.scrollTo({
-            top: heroSection.offsetHeight - 40,
-            behavior: "smooth"
-        });
-
-    }
+        document.getElementById('beginBtn');
 
 
     beginBtn.addEventListener(
-        "click",
+        'click',
         function () {
 
-            showStage(1);
+            hero.style.display = 'none';
+
+            stage1.classList.add('active');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
         }
     );
 
 
-    /* =========================
-       STAGE 1 — QUIZ
-    ========================= */
-
-    let quizScore = 0;
+    /* =========================================================
+       QUESTIONNAIRE
+    ========================================================= */
 
     const quizNext =
-        document.getElementById("quizNext");
-
-    const questions =
-        document.querySelectorAll(".question");
+        document.getElementById('quizNext');
 
 
-    document
-        .querySelectorAll(".option")
-        .forEach(option => {
+    const quizOptions =
+        document.querySelectorAll(
+            '#stage1 input[type="radio"]'
+        );
 
-            option.addEventListener(
-                "click",
+
+    quizOptions.forEach(
+        function (radio) {
+
+            radio.addEventListener(
+                'change',
                 function () {
 
                     const question =
-                        option.closest(".question");
+                        radio.closest('.question');
 
-                    question
-                        .querySelectorAll(".option")
-                        .forEach(item => {
 
-                            item.classList.remove(
-                                "selected"
+                    if (question) {
+
+                        question
+                            .querySelectorAll('.option')
+                            .forEach(
+                                function (option) {
+
+                                    option.classList.remove(
+                                        'selected'
+                                    );
+
+                                }
                             );
 
-                        });
 
-                    option.classList.add(
-                        "selected"
-                    );
+                        radio
+                            .closest('.option')
+                            .classList.add(
+                                'selected'
+                            );
 
-                    option.querySelector(
-                        "input"
-                    ).checked = true;
+                    }
 
-                    checkQuizComplete();
+
+                    const totalQuestions =
+                        document.querySelectorAll(
+                            '#stage1 .question'
+                        ).length;
+
+
+                    const answeredQuestions =
+                        document.querySelectorAll(
+                            '#stage1 input[type="radio"]:checked'
+                        ).length;
+
+
+                    quizNext.disabled =
+                        answeredQuestions !==
+                        totalQuestions;
 
                 }
             );
 
-        });
-
-
-    function checkQuizComplete() {
-
-        let answered = 0;
-        let score = 0;
-
-        questions.forEach(question => {
-
-            const checked =
-                question.querySelector(
-                    "input:checked"
-                );
-
-            if (checked) {
-
-                answered++;
-
-                score += parseInt(
-                    checked.value,
-                    10
-                );
-
-            }
-
-        });
-
-        quizScore = score;
-
-        quizNext.disabled =
-            answered < questions.length;
-
-    }
+        }
+    );
 
 
     quizNext.addEventListener(
-        "click",
+        'click',
         function () {
 
-            showStage(2);
+            quizScore = 0;
+
+
+            document
+                .querySelectorAll(
+                    '#stage1 input[type="radio"]:checked'
+                )
+                .forEach(
+                    function (radio) {
+
+                        quizScore +=
+                            Number(radio.value) || 0;
+
+                    }
+                );
+
+
+            stage1.classList.remove('active');
+
+            stage2.classList.add('active');
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
         }
     );
 
 
-    /* =========================
-       CAMERA FUNCTION
-    ========================= */
+    /* =========================================================
+       CAMERA SETUP
+    ========================================================= */
 
     function setupCamera(
         videoId,
@@ -172,521 +197,800 @@
         const canvas =
             document.getElementById(canvasId);
 
+
         let stream = null;
 
 
-        /* ENABLE CAMERA */
+        captureBtn.disabled = true;
 
-        startBtn.addEventListener(
-            "click",
-            async function () {
-
-                status.textContent =
-                    "Requesting camera access…";
-
-                try {
-
-                    stream =
-                        await navigator
-                            .mediaDevices
-                            .getUserMedia({
-
-                                video: {
-                                    facingMode: "user"
-                                },
-
-                                audio: false
-
-                            });
+        retakeBtn.disabled = true;
 
 
-                    video.srcObject =
-                        stream;
+        /* =====================================================
+           START CAMERA
+        ====================================================== */
 
-                    status.textContent =
-                        "Camera live. Frame yourself and capture when ready.";
+        async function startCamera() {
 
-                    startBtn.disabled =
-                        true;
-
-                    captureBtn.disabled =
-                        false;
-
-                }
-
-                catch (error) {
-
-                    status.textContent =
-                        "Camera access was denied or unavailable.";
-
-                    console.error(error);
-
-                }
-
-            }
-        );
+            status.textContent =
+                "Requesting camera access...";
 
 
-        /* CAPTURE */
+            try {
 
-        captureBtn.addEventListener(
-            "click",
-            function () {
+                if (
+                    !navigator.mediaDevices ||
+                    !navigator.mediaDevices.getUserMedia
+                ) {
 
-                const context =
-                    canvas.getContext("2d");
-
-                canvas.width =
-                    video.videoWidth || 640;
-
-                canvas.height =
-                    video.videoHeight || 480;
-
-
-                /* Mirror camera image */
-
-                context.translate(
-                    canvas.width,
-                    0
-                );
-
-                context.scale(-1, 1);
-
-                context.drawImage(
-                    video,
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
-
-
-                video.style.display =
-                    "none";
-
-                canvas.style.display =
-                    "block";
-
-                captureBtn.disabled =
-                    true;
-
-                retakeBtn.disabled =
-                    false;
-
-
-                if (stream) {
-
-                    stream
-                        .getTracks()
-                        .forEach(track =>
-                            track.stop()
-                        );
+                    throw new Error(
+                        "Camera API unavailable."
+                    );
 
                 }
 
 
-                onCaptured();
+                stream =
+                    await navigator.mediaDevices.getUserMedia({
 
-            }
-        );
+                        video: {
+                            facingMode: "user"
+                        },
+
+                        audio: false
+
+                    });
 
 
-        /* RETAKE */
+                video.srcObject =
+                    stream;
 
-        retakeBtn.addEventListener(
-            "click",
-            function () {
 
-                video.style.display =
-                    "block";
+                await video.play();
 
-                canvas.style.display =
-                    "none";
-
-                retakeBtn.disabled =
-                    true;
 
                 startBtn.disabled =
+                    true;
+
+                captureBtn.disabled =
                     false;
 
+                retakeBtn.disabled =
+                    true;
+
+
                 status.textContent =
-                    "Camera is off. Enable it to try again.";
+                    "Camera live.";
 
             }
+
+
+            catch (error) {
+
+                console.error(
+                    "Camera error:",
+                    error
+                );
+
+
+                status.textContent =
+                    "Camera access was denied or unavailable.";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CAPTURE
+        ====================================================== */
+
+        function capture() {
+
+            if (!stream) {
+                return;
+            }
+
+
+            const context =
+                canvas.getContext('2d');
+
+
+            canvas.width =
+                video.videoWidth;
+
+            canvas.height =
+                video.videoHeight;
+
+
+            context.save();
+
+
+            context.translate(
+                canvas.width,
+                0
+            );
+
+
+            context.scale(
+                -1,
+                1
+            );
+
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            context.restore();
+
+
+            video.style.display =
+                'none';
+
+            canvas.style.display =
+                'block';
+
+
+            stopCamera();
+
+
+            captureBtn.disabled =
+                true;
+
+            retakeBtn.disabled =
+                false;
+
+
+            status.textContent =
+                "Image captured — analysing specimen...";
+
+
+            if (
+                typeof onCaptured ===
+                'function'
+            ) {
+
+                onCaptured(
+                    video,
+                    canvas
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RETAKE
+        ====================================================== */
+
+        async function retake() {
+
+            canvas.style.display =
+                'none';
+
+            video.style.display =
+                'block';
+
+
+            retakeBtn.disabled =
+                true;
+
+            captureBtn.disabled =
+                true;
+
+
+            try {
+
+                stream =
+                    await navigator.mediaDevices.getUserMedia({
+
+                        video: {
+                            facingMode: "user"
+                        },
+
+                        audio: false
+
+                    });
+
+
+                video.srcObject =
+                    stream;
+
+
+                await video.play();
+
+
+                captureBtn.disabled =
+                    false;
+
+
+                status.textContent =
+                    "Camera live.";
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Camera error:",
+                    error
+                );
+
+
+                status.textContent =
+                    "Camera access was denied or unavailable.";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           STOP CAMERA
+        ====================================================== */
+
+        function stopCamera() {
+
+            if (stream) {
+
+                stream
+                    .getTracks()
+                    .forEach(
+                        function (track) {
+
+                            track.stop();
+
+                        }
+                    );
+
+                stream = null;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ====================================================== */
+
+        startBtn.addEventListener(
+            'click',
+            startCamera
+        );
+
+
+        captureBtn.addEventListener(
+            'click',
+            capture
+        );
+
+
+        retakeBtn.addEventListener(
+            'click',
+            retake
         );
 
     }
 
 
-    /* =========================
-       STAGE 2 — CANINE
-    ========================= */
+    /* =========================================================
+       STAGE 2 — MOUTH / CANINE
+    ========================================================= */
 
-    const canineNext =
+    const mouthGuide1 =
         document.getElementById(
-            "canineNext"
+            'mouthGuide1'
         );
 
 
-    setupCamera(
-        "video1",
-        "startCam1",
-        "capture1",
-        "retake1",
-        "status1",
-        "canvas1",
-
-        function () {
-
-            const reticle =
-                document.getElementById(
-                    "reticle1"
-                );
-
-            const tag =
-                document.getElementById(
-                    "reticleTag1"
-                );
-
-            const status =
-                document.getElementById(
-                    "status1"
-                );
-
-            const reading =
-                document.getElementById(
-                    "reading1"
-                );
-
-            const readingValue =
-                document.getElementById(
-                    "readingValue1"
-                );
-
-
-            /* Fake scan box */
-
-            reticle.style.left =
-                (32 + Math.random() * 8) + "%";
-
-            reticle.style.top =
-                (55 + Math.random() * 8) + "%";
-
-            reticle.style.width =
-                "22%";
-
-            reticle.style.height =
-                "18%";
-
-            reticle.style.display =
-                "block";
-
-
-            status.textContent =
-                "Measuring canine length…";
-
-            tag.textContent =
-                "SCANNING…";
-
-
-            setTimeout(
-                function () {
-
-                    const length =
-                        (
-                            6.5 +
-                            Math.random() * 8
-                        ).toFixed(1);
-
-                    const isLong =
-                        length > 11;
-
-
-                    tag.textContent =
-                        length + "mm";
-
-                    status.textContent =
-                        "Measurement complete.";
-
-
-                    readingValue.textContent =
-                        length +
-                        "mm — " +
-                        (
-                            isLong
-                                ? "well beyond the human average. Notable elongation."
-                                : "within the ordinary human range."
-                        );
-
-
-                    reading.classList.add(
-                        "show"
-                    );
-
-
-                    window.canineLong =
-                        isLong;
-
-                    window.canineMm =
-                        length;
-
-
-                    canineNext.disabled =
-                        false;
-
-                },
-                1400
-            );
-
-        }
-    );
-
-
-    canineNext.addEventListener(
-        "click",
-        function () {
-
-            showStage(3);
-
-        }
-    );
-
-
-    /* =========================
-       STAGE 3 — BREATH
-    ========================= */
-
-    const finalNext =
+    const faceStatus1 =
         document.getElementById(
-            "finalNext"
+            'faceStatus1'
         );
 
 
-    setupCamera(
-        "video2",
-        "startCam2",
-        "capture2",
-        "retake2",
-        "status2",
-        "canvas2",
+    const measurementInstructions =
+        document.getElementById(
+            'measurementInstructions'
+        );
 
+
+    const capture1 =
+        document.getElementById(
+            'capture1'
+        );
+
+
+    const startCam1 =
+        document.getElementById(
+            'startCam1'
+        );
+
+
+    /*
+     * The guide is now specifically for the mouth.
+     * There is no head circle.
+     */
+
+    startCam1.addEventListener(
+        'click',
         function () {
 
-            const cloud =
-                document.getElementById(
-                    "cloud2"
-                );
-
-            const status =
-                document.getElementById(
-                    "status2"
-                );
-
-            const reading =
-                document.getElementById(
-                    "reading2"
-                );
-
-            const readingValue =
-                document.getElementById(
-                    "readingValue2"
-                );
-
-
-            cloud.style.left =
-                (36 + Math.random() * 10) + "%";
-
-            cloud.style.top =
-                (58 + Math.random() * 10) + "%";
-
-            const size =
-                90 + Math.random() * 50;
-
-            cloud.style.width =
-                size + "px";
-
-            cloud.style.height =
-                size + "px";
-
-            cloud.style.display =
-                "block";
-
-
-            status.textContent =
-                "Reading sulfur compounds…";
-
-
-            setTimeout(
-                function () {
-
-                    const level =
-                        Math.round(
-                            Math.random() * 100
-                        );
-
-                    const suspicious =
-                        level < 35;
-
-
-                    status.textContent =
-                        "Reading complete.";
-
-
-                    readingValue.textContent =
-                        "Allicin trace: " +
-                        level +
-                        "% of expected baseline — " +
-                        (
-                            suspicious
-                                ? "far below normal. No recent garlic exposure detected."
-                                : "consistent with a garlic-eating household."
-                        );
-
-
-                    reading.classList.add(
-                        "show"
-                    );
-
-
-                    window.breathLow =
-                        suspicious;
-
-
-                    finalNext.disabled =
-                        false;
-
-                },
-                1400
+            mouthGuide1.classList.remove(
+                'warning'
             );
+
+            mouthGuide1.classList.add(
+                'accepted'
+            );
+
+
+            faceStatus1.textContent =
+                "MOUTH POSITION ACCEPTED — keep your mouth inside the guide.";
+
+
+            measurementInstructions.textContent =
+                "Keep your mouth centred and clearly visible before capturing.";
+
+
+            capture1.disabled =
+                false;
 
         }
     );
 
 
-    /* =========================
-       FINAL VERDICT
-    ========================= */
+    /* =========================================================
+       CANINE CAPTURE
+    ========================================================= */
 
-    finalNext.addEventListener(
-        "click",
+    setupCamera(
+
+        'video1',
+
+        'startCam1',
+
+        'capture1',
+
+        'retake1',
+
+        'status1',
+
+        'canvas1',
+
         function () {
 
-            let total =
-                quizScore;
+            const reading =
+                document.getElementById(
+                    'reading1'
+                );
 
 
-            if (window.canineLong) {
-
-                total += 3;
-
-            }
-
-
-            if (window.breathLow) {
-
-                total += 3;
-
-            }
+            const readingValue =
+                document.getElementById(
+                    'readingValue1'
+                );
 
 
-            let title;
-            let description;
+            const canineNext =
+                document.getElementById(
+                    'canineNext'
+                );
 
 
-            if (total <= 5) {
+            /*
+             * No square is placed on the teeth.
+             *
+             * The result is simply simulated as part
+             * of the fictional examination.
+             */
 
-                title =
-                    "CERTIFIED HUMAN";
+            const canineMm =
+                6.5 +
+                Math.random() * 8;
 
-                description =
-                    "Ordinary dentition, ordinary breath, ordinary habits. The night has no claim on you.";
 
-            }
+            const roundedMm =
+                canineMm.toFixed(1);
 
-            else if (total <= 10) {
 
-                title =
-                    "SUSPICIOUS CASE";
+            const isLong =
+                canineMm > 11;
 
-                description =
-                    "Several readings sit outside the expected range. Not conclusive — but worth watching around dusk.";
+
+            window.canineLong =
+                isLong;
+
+
+            window.canineMm =
+                Number(roundedMm);
+
+
+            if (isLong) {
+
+                readingValue.textContent =
+                    roundedMm +
+                    " mm — elongated canine measurement detected.";
 
             }
 
             else {
 
-                title =
-                    "CONFIRMED CREATURE OF THE NIGHT";
-
-                description =
-                    "Habit, dentition, and breath all point the same direction. The ledger considers this case closed.";
+                readingValue.textContent =
+                    roundedMm +
+                    " mm — canine measurement within normal range.";
 
             }
 
 
-            document.getElementById(
-                "verdictTitle"
-            ).textContent = title;
+            reading.classList.add(
+                'show'
+            );
+
+
+            canineNext.disabled =
+                false;
 
 
             document.getElementById(
-                "verdictDesc"
-            ).textContent = description;
+                'status1'
+            ).textContent =
+                "CANINE ANALYSIS COMPLETE.";
+
+        }
+
+    );
 
 
-            document.getElementById(
-                "breakdown"
-            ).innerHTML = `
+    /* =========================================================
+       CANINE → ODOUR
+    ========================================================= */
 
-                <div>
-                    <span>Habit score</span>
-                    <span>${quizScore} / 10</span>
-                </div>
-
-                <div>
-                    <span>Canine reading</span>
-                    <span>${window.canineMm || "—"}mm</span>
-                </div>
-
-                <div>
-                    <span>Breath reading</span>
-                    <span>
-                        ${
-                            window.breathLow
-                                ? "Low sulfur"
-                                : "Normal sulfur"
-                        }
-                    </span>
-                </div>
-
-                <div>
-                    <span>Total</span>
-                    <span>${total} / 16</span>
-                </div>
-
-            `;
+    const canineNext =
+        document.getElementById(
+            'canineNext'
+        );
 
 
-            showStage(4);
+    canineNext.addEventListener(
+        'click',
+        function () {
+
+            stage2.classList.remove(
+                'active'
+            );
+
+
+            stage3.classList.add(
+                'active'
+            );
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
         }
     );
 
 
-    /* =========================
-       RESTART
-    ========================= */
+    /* =========================================================
+       STAGE 3 — ODOUR
+    ========================================================= */
 
-    document
-        .getElementById("restartBtn")
-        .addEventListener(
-            "click",
-            function () {
+    setupCamera(
 
-                location.reload();
+        'video2',
+
+        'startCam2',
+
+        'capture2',
+
+        'retake2',
+
+        'status2',
+
+        'canvas2',
+
+        function () {
+
+            const cloud =
+                document.getElementById(
+                    'cloud2'
+                );
+
+
+            const reading =
+                document.getElementById(
+                    'reading2'
+                );
+
+
+            const readingValue =
+                document.getElementById(
+                    'readingValue2'
+                );
+
+
+            /*
+             * TWO POSSIBLE RESULTS:
+             *
+             * 1. ODOUR DETECTED
+             * 2. NO ODOUR DETECTED
+             *
+             * It will NOT always detect odour.
+             */
+
+            const odourDetected =
+                Math.random() < 0.5;
+
+
+            if (odourDetected) {
+
+                window.breathLow =
+                    true;
+
+
+                cloud.style.display =
+                    'block';
+
+
+                cloud.style.width =
+                    '120px';
+
+                cloud.style.height =
+                    '90px';
+
+                cloud.style.left =
+                    '45%';
+
+                cloud.style.top =
+                    '45%';
+
+
+                readingValue.textContent =
+                    "ODOUR DETECTED — suspicious odour signature identified.";
+
+
+                reading.classList.add(
+                    'show'
+                );
+
+
+                document.getElementById(
+                    'status2'
+                ).textContent =
+                    "SCREENING RESULT: ODOUR DETECTED.";
 
             }
+
+
+            else {
+
+                window.breathLow =
+                    false;
+
+
+                cloud.style.display =
+                    'none';
+
+
+                readingValue.textContent =
+                    "NO ODOUR DETECTED — no suspicious odour signature identified.";
+
+
+                reading.classList.add(
+                    'show'
+                );
+
+
+                document.getElementById(
+                    'status2'
+                ).textContent =
+                    "SCREENING RESULT: NO ODOUR DETECTED.";
+
+            }
+
+        }
+
+    );
+
+
+    /* =========================================================
+       FINAL VERDICT
+    ========================================================= */
+
+    const finalNext =
+        document.getElementById(
+            'finalNext'
         );
+
+
+    finalNext.addEventListener(
+        'click',
+        function () {
+
+            stage3.classList.remove(
+                'active'
+            );
+
+
+            stage4.classList.add(
+                'active'
+            );
+
+
+            const total =
+                quizScore +
+
+                (
+                    window.canineLong
+                        ? 3
+                        : 0
+                ) +
+
+                (
+                    window.breathLow
+                        ? 3
+                        : 0
+                );
+
+
+            const verdictTitle =
+                document.querySelector(
+                    '.verdict-title'
+                );
+
+
+            const verdictDesc =
+                document.querySelector(
+                    '.verdict-desc'
+                );
+
+
+            /* =================================================
+               VERDICT
+            ================================================== */
+
+            if (total <= 5) {
+
+                verdictTitle.textContent =
+                    "CERTIFIED HUMAN";
+
+
+                verdictDesc.textContent =
+                    "The examination shows no significant signs of vampiric characteristics.";
+
+            }
+
+
+            else if (total <= 10) {
+
+                verdictTitle.textContent =
+                    "SUSPICIOUS CASE";
+
+
+                verdictDesc.textContent =
+                    "Several unusual characteristics were identified during the examination.";
+
+            }
+
+
+            else {
+
+                verdictTitle.textContent =
+                    "CONFIRMED CREATURE OF THE NIGHT";
+
+
+                verdictDesc.textContent =
+                    "The collected evidence strongly suggests an unusually nocturnal specimen.";
+
+            }
+
+
+            /* =================================================
+               BREAKDOWN
+            ================================================== */
+
+            const breakdown =
+                document.querySelector(
+                    '.breakdown'
+                );
+
+
+            breakdown.innerHTML = `
+
+                <div>
+
+                    <span>
+                        Questionnaire
+                    </span>
+
+                    <span>
+                        ${quizScore}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Canine morphology
+                    </span>
+
+                    <span>
+                        ${window.canineLong ? 3 : 0}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Odour analysis
+                    </span>
+
+                    <span>
+                        ${window.breathLow ? 3 : 0}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Total Suspicion
+                    </strong>
+
+                    <strong>
+                        ${total}
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+    );
+
+
+    /* =========================================================
+       RESTART
+    ========================================================= */
+
+    const restartBtn =
+        document.getElementById(
+            'restartBtn'
+        );
+
+
+    restartBtn.addEventListener(
+        'click',
+        function () {
+
+            window.location.reload();
+
+        }
+    );
 
 
 })();
