@@ -2,16 +2,16 @@
 
 
 
-# [Project Name] 🎯
+# [Vampirism Assessment] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [Logic Loop]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: [Anagha Sasikumar] - [NSSCE]
+- Member 2: [Ananthu] - [NSSCE]
 - Member 3: [Name] - [College]
 
 ### Project Description
