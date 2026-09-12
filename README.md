@@ -34,7 +34,7 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-<img width="1000" height="500" alt="git (1)" src="2026-09-12(1).png" />
+<img width="1000" height="500" alt="git (1)" src="2026-09-12 (1).png" />
 (Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
