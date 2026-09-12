@@ -34,7 +34,8 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![https://github.com/unitedseven/useless_project_logicloop/upload/main#:~:text=choose%20your%20files-,2026%2D09%2D12%20(1).png,-2026%2D09%2D12](Add screenshot 1 here with proper name)
+<img width="1000" height="500" alt="git (1)" src="2026-09-12(1).png" />
+(Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
 ![https://github.com/unitedseven/useless_project_logicloop/blob/main/2026-09-12%20(3).png#:~:text=12%20(1).png-,2026%2D09%2D12%20(3).png,-2026%2D09%2D12](Add screenshot 2 here with proper name)
