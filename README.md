@@ -27,8 +27,6 @@ A serious problem… that absolutely nobody asked us to solve.]
 ### Technologies/Components Used
 For Software:
 - [HTML,CSS,JAVA SCRIPT]
-- [Frameworks used]
-- [Libraries used]
 - [Visual Studio Code, GitHub, GitHub Pages, Web Browser]
 
 
