@@ -34,7 +34,7 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+![https://github.com/unitedseven/useless_project_logicloop/upload/main#:~:text=choose%20your%20files-,2026%2D09%2D12%20(1).png,-2026%2D09%2D12](Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
 ![Screenshot2](Add screenshot 2 here with proper name)
