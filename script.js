@@ -372,6 +372,44 @@
 
         async function retake() {
 
+            /*
+             * IMPORTANT:
+             * If this is the odour camera, completely
+             * hide the previous green odour effect.
+             */
+
+            if (canvasId === 'canvas2') {
+
+                const cloud =
+                    document.getElementById('cloud2');
+
+
+                if (cloud) {
+
+                    cloud.style.display =
+                        'none';
+
+                    cloud.style.opacity =
+                        '0';
+
+                }
+
+
+                const reading =
+                    document.getElementById('reading2');
+
+
+                if (reading) {
+
+                    reading.classList.remove(
+                        'show'
+                    );
+
+                }
+
+            }
+
+
             canvas.style.display =
                 'none';
 
@@ -516,11 +554,6 @@
         );
 
 
-    /*
-     * The guide is now specifically for the mouth.
-     * There is no head circle.
-     */
-
     startCam1.addEventListener(
         'click',
         function () {
@@ -586,13 +619,6 @@
                     'canineNext'
                 );
 
-
-            /*
-             * No square is placed on the teeth.
-             *
-             * The result is simply simulated as part
-             * of the fictional examination.
-             */
 
             const canineMm =
                 6.5 +
@@ -675,6 +701,40 @@
             );
 
 
+            /*
+             * Make absolutely sure that an old
+             * odour effect is not visible when
+             * entering Stage 3.
+             */
+
+            const cloud =
+                document.getElementById('cloud2');
+
+
+            if (cloud) {
+
+                cloud.style.display =
+                    'none';
+
+                cloud.style.opacity =
+                    '0';
+
+            }
+
+
+            const reading =
+                document.getElementById('reading2');
+
+
+            if (reading) {
+
+                reading.classList.remove(
+                    'show'
+                );
+
+            }
+
+
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -723,27 +783,22 @@
 
 
             /*
-             * TWO POSSIBLE RESULTS:
+             * IMPORTANT:
              *
-             * 1. ODOUR DETECTED
-             * 2. NO ODOUR DETECTED
+             * The green effect is HIDDEN while
+             * the camera is live.
              *
-             * It will NOT always detect odour.
+             * It can only appear here because
+             * this function runs AFTER capture.
              */
 
-            const odourDetected =
-                Math.random() < 0.5;
-
-
-            if (odourDetected) {
-
-                window.breathLow =
-                    true;
-
+            if (cloud) {
 
                 cloud.style.display =
                     'block';
 
+                cloud.style.opacity =
+                    '0';
 
                 cloud.style.width =
                     '120px';
@@ -756,6 +811,95 @@
 
                 cloud.style.top =
                     '45%';
+
+
+                /*
+                 * Green pulse AFTER capture.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        cloud.style.opacity =
+                            '0.7';
+
+                    },
+                    100
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        cloud.style.opacity =
+                            '0';
+
+                    },
+                    800
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        cloud.style.opacity =
+                            '0.55';
+
+                    },
+                    1200
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        cloud.style.opacity =
+                            '0';
+
+                    },
+                    1900
+                );
+
+
+                /*
+                 * Completely remove it after
+                 * the analysis animation.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        cloud.style.display =
+                            'none';
+
+                        cloud.style.opacity =
+                            '0';
+
+                    },
+                    2400
+                );
+
+            }
+
+
+            /*
+             * TWO POSSIBLE RESULTS
+             *
+             * ODOUR DETECTED
+             * NO ODOUR DETECTED
+             *
+             * A new random result is generated
+             * EVERY TIME a new photograph is captured.
+             */
+
+            const odourDetected =
+                Math.random() < 0.5;
+
+
+            if (odourDetected) {
+
+                window.breathLow =
+                    true;
 
 
                 readingValue.textContent =
@@ -779,10 +923,6 @@
 
                 window.breathLow =
                     false;
-
-
-                cloud.style.display =
-                    'none';
 
 
                 readingValue.textContent =
@@ -860,7 +1000,7 @@
 
             /* =================================================
                VERDICT
-            ================================================== */
+            ================================================= */
 
             if (total <= 5) {
 
@@ -900,7 +1040,7 @@
 
             /* =================================================
                BREAKDOWN
-            ================================================== */
+            ================================================= */
 
             const breakdown =
                 document.querySelector(
