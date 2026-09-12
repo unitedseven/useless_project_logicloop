@@ -45,9 +45,9 @@ For Software:
 <img width="1000" height="500" alt="git (1)" src="2026-09-12 (4).png" />
 *Add caption explaining what this shows*
 
-<img width="1000" height="500" alt="git (1)" src="2026-09-12 (5).png" 
+<img width="1000" height="500" alt="git (1)" src="2026-09-12 (5).png" />
 
-  <img width="1000" height="500" alt="git (1)" src="2026-09-12 .png" />
+  <img width="1000" height="500" alt="git (1)" src="2026-09-12.png" />
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
