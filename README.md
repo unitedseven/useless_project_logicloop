@@ -47,25 +47,10 @@ For Software:
 
 <img width="800" height="400" alt="git (1)" src="2026-09-12 (4).png" />
 
-  <img width="800" height="400" alt="git (1)" src="2026-09-12 (5).png/>
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
+  <img width="800" height="400" alt="git (1)" src="2026-09-12 (5).png"/>
 
 
 
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
