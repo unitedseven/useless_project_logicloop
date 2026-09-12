@@ -40,7 +40,7 @@ For Software:
 ![https://github.com/unitedseven/useless_project_logicloop/blob/main/2026-09-12%20(3).png#:~:text=12%20(1).png-,2026%2D09%2D12%20(3).png,-2026%2D09%2D12](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![Screenshot3]2026-09-12 (4).png
 *Add caption explaining what this shows*
 
 # Diagrams
