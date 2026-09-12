@@ -11,7 +11,7 @@
 
 ### Team Members
 - Member 1: [Anagha Sasikumar] - [NSSCE]
-- Member 2: [Ananthu] - [NSSCE]
+- Member 2: [Anantha krishnan G] - [NSSCE]
 
 ### Project Description
 [VampCheck is a totally unnecessary website that checks whether you are secretly a vampire. 🧛‍♂️ It puts you through some weird tests and gives you a completely questionable final verdict.]
@@ -34,20 +34,20 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-<img width="1000" height="500" alt="git (1)" src="2026-09-12 (1).png" />
+<img width="800" height="400" alt="git (1)" src="2026-09-12 (1).png" />
 (Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
-<img width="1000" height="500" alt="git (1)" src="2026-09-12 (3).png" />
+<img width="800" height="400" alt="git (1)" src="2026-09-12.png" />
 (Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
-<img width="1000" height="500" alt="git (1)" src="2026-09-12 (4).png" />
+<img width="800" height="400" alt="git (1)" src="2026-09-12 (3).png" />
 *Add caption explaining what this shows*
 
-<img width="1000" height="500" alt="git (1)" src="2026-09-12 (5).png" />
+<img width="800" height="400" alt="git (1)" src="2026-09-12 (4).png" />
 
-  <img width="1000" height="500" alt="git (1)" src="2026-09-12.png" />
+  <img width="800" height="400" alt="git (1)" src="2026-09-12 (5).png/>
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
