@@ -38,11 +38,16 @@ For Software:
 (Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
-![https://github.com/unitedseven/useless_project_logicloop/blob/main/2026-09-12%20(3).png#:~:text=12%20(1).png-,2026%2D09%2D12%20(3).png,-2026%2D09%2D12](Add screenshot 2 here with proper name)
+<img width="1000" height="500" alt="git (1)" src="2026-09-12 (3).png" />
+(Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
-![Screenshot3](2026-09-12 (4).png)
+<img width="1000" height="500" alt="git (1)" src="2026-09-12 (4).png" />
 *Add caption explaining what this shows*
+
+<img width="1000" height="500" alt="git (1)" src="2026-09-12 (5).png" 
+
+  <img width="1000" height="500" alt="git (1)" src="2026-09-12 .png" />
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
