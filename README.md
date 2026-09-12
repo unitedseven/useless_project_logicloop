@@ -12,37 +12,25 @@
 ### Team Members
 - Member 1: [Anagha Sasikumar] - [NSSCE]
 - Member 2: [Ananthu] - [NSSCE]
-- Member 3: [Name] - [College]
 
 ### Project Description
-[2-3 lines about what your project does]
+[VampCheck is a totally unnecessary website that checks whether you are secretly a vampire. 🧛‍♂️ It puts you through some weird tests and gives you a completely questionable final verdict.]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[What if you are a vampire and simply don't know it? 🩸
+A serious problem… that absolutely nobody asked us to solve.]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[VampCheck investigates your humanity using random questions, fang checks, and an odour test. 🦇 After all that effort, it gives you a dramatic verdict that may or may not be completely wrong.]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
+- [HTML,CSS,JAVA SCRIPT]
 - [Frameworks used]
 - [Libraries used]
-- [Tools used]
+- [Visual Studio Code, GitHub, GitHub Pages, Web Browser]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
-
-### Implementation
-For Software:
-# Installation
-[commands]
-
-# Run
-[commands]
 
 ### Project Documentation
 For Software:
@@ -63,12 +51,7 @@ For Software:
 
 For Hardware:
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
 # Build Photos
 ![Components](Add photo of your components here)
